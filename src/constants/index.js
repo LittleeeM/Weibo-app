@@ -1,1 +1,11 @@
-export  const ACCESS_TOKEN = '2.00EBzpIIGJcLCE5bb32cf4850j_hKF';  
+export  const ACCESS_TOKEN_KEY = 'access_token';  
+
+export const APP_KEY = '3696852244';
+export const APP_SECRET = '53eaa55c068e880f58b81cab494f819e';
+export const REDIRECT_URI = encodeURIComponent('http://localhost:3000/login');
+
+export const LOGIN_URL = `https://demo.don.red/weibo/api/oauth2/authorize?client_id=${APP_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=email`;
+
+export const getAccessCode = (code) => 
+  `https://demo.don.red/weibo/api/oauth2/access_token?client_id=${APP_KEY}&client_secret=${APP_SECRET}
+  &grant_type=authorization_code&redirect_uri=${REDIRECT_URI}&code=${code}`

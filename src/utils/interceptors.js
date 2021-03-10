@@ -1,4 +1,4 @@
-import { ACCESS_TOKEN } from '../constants';
+import { ACCESS_TOKEN_KEY } from '../constants';
 
 const responseInterceptors = [
   {
@@ -13,7 +13,7 @@ const requestInterceptors = [
   {
     name: 'addHttpRequestHeader',
     success(config) {
-      config.headers['Authorization'] = `OAuth2 ${ACCESS_TOKEN}`;
+      config.headers['Authorization'] = `OAuth2 ${localStorage.getItem(ACCESS_TOKEN_KEY)}`;
       return config;
     },
     fail(err) {
@@ -37,7 +37,7 @@ function doInstall(instance, options = {}) {
     })
 }
 
-export function install(instance, options = {}) {
+export function install(instance) {
   doInstall(instance, {
     type: 'request',
   });
