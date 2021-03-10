@@ -62,7 +62,7 @@ const Post = ({
         <div className={styles.text}>
           {text}
           {
-            retweeted_status && 
+            retweeted_status &&
             <Post type="inner" {...retweeted_status} />
           }
         </div>
@@ -70,7 +70,11 @@ const Post = ({
           {pic_urls.map(({ thumbnail_pic }) => (
             <li key={thumbnail_pic} className={styles.imgWrapper}>
               <div className={styles.imgContainer}>
-                <img src={thumbnail_pic} alt={thumbnail_pic} />
+                <img
+                  src={thumbnail_pic}
+                  alt={thumbnail_pic}
+                  onError={({ currentTarget }) => currentTarget.src = `/${process.env.PUBLIC_URL ? process.env.PUBLIC_URL + '/' : ''}404.svg`}
+                />
               </div>
             </li>
           ))}
