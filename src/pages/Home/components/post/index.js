@@ -26,6 +26,7 @@ const getPostTitle = (user, created_at, source) => (
 );
 
 const Post = ({
+  id,
   text,
   user,
   created_at,
@@ -37,6 +38,11 @@ const Post = ({
   retweeted_status,
   type,
 }) => {
+  const handleClickComment = () => {
+    if (!comments_count) {
+      window.location.href = `/comments/${id}`;
+    }
+  }
   return (
     <Card
       type={type}
@@ -53,7 +59,7 @@ const Post = ({
           <LikeOutlined key="like" />
           <span>{attitudes_count || ""}</span>
         </div>,
-        <div>
+        <div onClick={handleClickComment}>
           <MessageOutlined key="message" />,<span>{comments_count || ""}</span>
         </div>,
       ]}

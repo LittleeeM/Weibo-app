@@ -45,6 +45,7 @@ const Home = () => {
           }) => (
             <Post 
               key={id}
+              id={id}
               {...rest}
             />
           ))

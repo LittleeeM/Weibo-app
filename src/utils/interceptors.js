@@ -6,7 +6,7 @@ const responseInterceptors = [
     success(response) {
       return response.data;
     }
-  },
+  }
 ];
 
 const requestInterceptors = [
