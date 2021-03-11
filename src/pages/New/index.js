@@ -10,12 +10,16 @@ const { TextArea } = Input;
 
 const New = ({ match }) => {
   const dispatch = useDispatch();
-  const { params: { id }} = match;
+  const { params: { id } } = match;
   const [value, setValue] = useState('');
   const handleClick = (e) => {
     e.preventDefault();
     if (id) {
-      dispatch(createComment({ id, comment: value }));
+      let param = new URLSearchParams();
+      param.append('id', id);
+      param.append('comment', value);
+      dispatch(createComment(param, false));
+      setValue('');
     }
   }
   return (
@@ -27,12 +31,12 @@ const New = ({ match }) => {
           align="middle"
         >
           <Link to="/"><LeftOutlined className={styles.icon} /></Link>
-          <a 
-            className={styles.send} 
+          <a
+            className={styles.send}
             href="#!"
             onClick={handleClick}
           >
-            { id ? '评论' : '发送' }
+            {id ? '评论' : '发送'}
           </a>
         </Row>
       </Affix>
@@ -40,7 +44,7 @@ const New = ({ match }) => {
         <TextArea
           value={value}
           className={styles.textarea}
-          placeholder={ id ? '写评论...' : '分享新鲜事...'}
+          placeholder={id ? '写评论...' : '分享新鲜事...'}
           onChange={(e) => setValue(e.target.value)}
         />
       </div>
@@ -48,4 +52,4 @@ const New = ({ match }) => {
   )
 }
 
-export default New; 
+export default New;
