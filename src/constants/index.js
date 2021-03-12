@@ -8,4 +8,6 @@ export const LOGIN_URL = `https://demo.don.red/weibo/api/oauth2/authorize?client
 
 export const getAccessCode = (code) => 
   `https://demo.don.red/weibo/api/oauth2/access_token?client_id=${APP_KEY}&client_secret=${APP_SECRET}
-  &grant_type=authorization_code&redirect_uri=${REDIRECT_URI}&code=${code}`
+  &grant_type=authorization_code&redirect_uri=${REDIRECT_URI}&code=${code}`;
+
+export const COMMENT_PAGESIZE = 5;

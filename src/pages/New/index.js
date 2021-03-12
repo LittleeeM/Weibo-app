@@ -18,7 +18,7 @@ const New = ({ match }) => {
       let param = new URLSearchParams();
       param.append('id', id);
       param.append('comment', value);
-      dispatch(createComment(param, false));
+      dispatch(createComment(param, true));
       setValue('');
     }
   }
