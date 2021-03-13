@@ -1,4 +1,6 @@
 export  const ACCESS_TOKEN_KEY = 'access_token';  
+export  const UID_KEY = 'access_uid';  
+export const getUid = () => localStorage.getItem(UID_KEY);
 
 export const APP_KEY = '3696852244';
 export const APP_SECRET = '53eaa55c068e880f58b81cab494f819e';
