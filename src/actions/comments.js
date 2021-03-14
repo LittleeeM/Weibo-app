@@ -6,30 +6,31 @@ export function createComment(params = {}, isFirst) {
   return async (dispatch) => {
     try {
       const result = await api.createComment(params);
-      if (result) { 
+      if (result) {
         message.success('success!');
         if (!isFirst) {
           dispatch({
-            type: ADD_COMMENT,       
+            type: ADD_COMMENT,
             payload: result,
           })
         }
       }
-    } catch(e) {
+    } catch (e) {
       message.error(e.message || 'fail!');
     }
   }
-}  
+}
 
 export function getComments(params = {}) {
   return async (dispatch) => {
-    const { comments = [], total_number = 0 } = await api.getComments(params);
+    const { comments = [], status: { comments_count: total } } = await api.getComments(params);
+    console.log(total)
     dispatch({
       type: GET_COMMENTS,
       payload: {
         comments,
         params,
-        total: total_number,
+        total,
       },
     })
   }
