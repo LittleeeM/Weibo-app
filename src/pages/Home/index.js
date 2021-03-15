@@ -7,51 +7,56 @@ import { Link } from 'react-router-dom';
 import { getHomeTimeline } from '../../actions/timeline';
 import { LOGIN_URL } from '../../constants';
 import Post from './components/post';
+import CommentsList from './components/commentsList';
 import styles from './index.module.scss';
 
 const mapStateTimeline = (state) => state.timeline;
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { home: { posts = [], page } = {}} = useMappedState(mapStateTimeline);
-
+  const { home: { posts = [], page } = {}, current } = useMappedState(
+    mapStateTimeline
+  );
   const handleInfiniteOnLoad = () => {
-    dispatch(getHomeTimeline({ page: page + 1}));
-  }
+    dispatch(getHomeTimeline({ page: page + 1 }));
+  };
 
-  return ( 
+  return (
     <div className={styles.container}>
       <Affix offsetTop={0}>
-        <Row
-          className={styles.appbar}
-          justify="space-between"
-          align="middle"
-        >
-          <a href={LOGIN_URL}><UserOutlined className={styles.icon} /></a>
+        <Row className={styles.appbar} justify="space-between" align="middle">
+          <a href={LOGIN_URL}>
+            <UserOutlined className={styles.icon} />
+          </a>
           <div className={styles.appTitle}>Weibo app</div>
-          <Link to="/new"><EditOutlined className={styles.icon} /></Link>
+          <Link to="/new">
+            <EditOutlined className={styles.icon} />
+          </Link>
         </Row>
       </Affix>
       <InfiniteScroll
-        initialLoad 
+        initialLoad
         pageStart={1}
         loadMore={handleInfiniteOnLoad}
         hasMore
       >
-        {
-          posts.map(({
-            id,
-            ...rest
-          }) => (
+        {posts.map(({ id, ...rest }) => (
+          <>
             <Post 
-              key={id}
+              key={id} 
+              id={id} 
+              isCurrent={current === id}
               {...rest}
             />
-          ))
-        }
+            {
+              current === id && (
+              < CommentsList id={current} />
+              )}
+            </>
+        ))}
       </InfiniteScroll>
     </div>
   );
-}; 
+};
 
 export default Home;
