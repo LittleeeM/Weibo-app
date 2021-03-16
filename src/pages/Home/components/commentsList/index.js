@@ -37,7 +37,7 @@ const CommentsList = ({ id }) => {
     }
 
     const handleDeleteComment = (e, id) => {
-        e.preventDefaulst();
+        e.preventDefault();
         let param = new URLSearchParams();
         param.append('cid', id);
         confirm({

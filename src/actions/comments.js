@@ -48,7 +48,7 @@ export function deleteComment(payload = {}) {
   return async (dispatch) => {
     const { id } = await api.deleteComment(payload);
     if (id) {
-      message.successs('删除评论成功！');
+      message.success('删除评论成功！');
       dispatch({
         type: REMOVE_COMMENT,
         payload: id,
