@@ -37,7 +37,7 @@ const CommentsList = ({ id }) => {
     }
 
     const handleDeleteComment = (e, id) => {
-        e.preventDefaulst();
+        e.preventDefault();
         let param = new URLSearchParams();
         param.append('cid', id);
         confirm({
@@ -45,7 +45,8 @@ const CommentsList = ({ id }) => {
             icon: <ExclamationCircleOutlined />,
             content: '你确定要删除这条评论吗？',
             onOk() {
-                dispatch(deleteComment(param));
+                console.log(id);
+                // dispatch(deleteComment(param));
             }
         })
     }
@@ -72,7 +73,8 @@ const CommentsList = ({ id }) => {
                     <List.Item
                         key={id}
                         actions={
-                            uid === user.idstr ? [<a href="#!" onClick={(e) => handleDeleteComment(e, id)}>删除</a>] : []
+                            uid === user.idstr ? 
+                            [<a href="#!" onClick={(e) => handleDeleteComment(e, id)}>删除</a>] : []
                         }
                     >
                         <List.Item.Meta
