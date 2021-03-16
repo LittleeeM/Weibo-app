@@ -24,7 +24,7 @@ export default function reducer(state = initState, action) {
     case REMOVE_COMMENT:
       return {
         ...state,
-        comments: state.comments.filter(({id}) => id !== action.payload),
+        comments: state.comments.filter(({ id }) => id !== action.payload),
       }
     default:
       return state; 
