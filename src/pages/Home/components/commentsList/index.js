@@ -9,6 +9,7 @@ import styles from './index.module.scss';
 
 const mapStateComments = (state) => state.comments;
 const uid = getUid();
+
 const { confirm } = Modal;
 
 const CommentsList = ({ id }) => {
@@ -45,6 +46,7 @@ const CommentsList = ({ id }) => {
             icon: <ExclamationCircleOutlined />,
             content: '你确定要删除这条评论吗？',
             onOk() {
+                //console.log(id);
                 dispatch(deleteComment(param));
             }
         })
@@ -72,7 +74,8 @@ const CommentsList = ({ id }) => {
                     <List.Item
                         key={id}
                         actions={
-                            uid === user.idstr ? [<a href="#!" onClick={(e) => handleDeleteComment(e, id)}>删除</a>] : []
+                            uid === user.idstr ? 
+                            [<a href="#!" onClick={(e) => handleDeleteComment(e, id)}>删除</a>] : []
                         }
                     >
                         <List.Item.Meta

@@ -13,4 +13,4 @@ export function getAccess(params = {}) {
     }
     window.location.href = '/';
   }
-}  
+}   
